@@ -72,7 +72,7 @@ Map explanation (hard mode)
 
 ![alt text](https://github.com/victorgomezg93/terraform-aws-go/blob/main/graph.png?raw=true)
 
-Better
+Better view
 
 ![alt text](https://github.com/victorgomezg93/terraform-aws-go/blob/main/diagram.png?raw=true)
 
