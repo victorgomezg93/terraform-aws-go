@@ -64,7 +64,7 @@ Using the application load balancer we can distribute  network traffic and infor
 
 Also the service is autoscaled depending of the CPU utilization, minimum we run 3 tasks but we can scale up to 6 if the cpu utilizations goes >= 85, if the trafic is reduced and we find that we have  <= 10 cpu utlization we remove one task to avoid cost.
 
-We are using ECS because is really powerful compared with EC2 and we have an internet gateway for the public subnets with public and private subnets where the containers is located. We are deploying it on us-west-1 because my sandbox is located in this region.
+We are using ECS because is really powerful compared with EC2 and we have an internet gateway for the public subnets with public and private subnets where the containers is located. We are deploying it on us-east-1 because my sandbox is located in this region.
 
 Our container is a go server is running with https protocol in port 443, the aws credentials are gathered from the credentials aws file in $HOME/.aws/credentials.
 
@@ -75,6 +75,16 @@ Map explanation (hard mode)
 Better view
 
 ![alt text](https://github.com/victorgomezg93/terraform-aws-go/blob/main/diagram.PNG?raw=true)
+
+CODE
+----
+We have a docker to deploy the application and to implement some api we have in the /health path a healtcheck checking if our sqlite3 database is connected or not, I didn't had time to implement the database so always return the same response in json:
+
+```sh
+{"status":"down","details":{"database":{"status":"down","timestamp":"2021-10-05T23:24:08.425492059Z","error":"Binary was compiled with 'CGO_ENABLED=0', go-sqlite3 requires cgo to work. This is a stub"},"search":{"status":"down","timestamp":"2021-10-05T23:24:06.309964687Z","error":"this makes the check fail"}}}
+```
+
+The only changing thing is the timestamp.
 
 GUIDE TO CREATE PRIVATE/PUBLIC KEYS (not necessary, just as a reminder when the certificate expires)
 ----
