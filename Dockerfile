@@ -17,6 +17,6 @@ RUN go mod tidy
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /server .
 
 #Exposing the port
-EXPOSE 8082
+EXPOSE 8080
 
 CMD [ "/server" ]
