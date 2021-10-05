@@ -74,7 +74,7 @@ Map explanation (hard mode)
 
 Better view
 
-![alt text](https://github.com/victorgomezg93/terraform-aws-go/blob/main/diagram.png?raw=true)
+![alt text](https://github.com/victorgomezg93/terraform-aws-go/blob/main/diagram.PNG?raw=true)
 
 GUIDE TO CREATE PRIVATE/PUBLIC KEYS (not necessary, just as a reminder when the certificate expires)
 ----
