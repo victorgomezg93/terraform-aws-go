@@ -17,7 +17,7 @@ variable "az_count" {
 
 variable "app_image" {
   description = "Docker image to run in the ECS cluster"
-  default     = "880231462042.dkr.ecr.us-east-1.amazonaws.com/go-ecs-app-repo:latest"
+  default     = "206607556591.dkr.ecr.us-east-1.amazonaws.com/go-ecs-app-repo:latest"
 }
 
 variable "app_port" {

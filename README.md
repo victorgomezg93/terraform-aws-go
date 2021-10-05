@@ -47,7 +47,7 @@ terraform apply --auto-approve
 
 The result should be an alb hostname accesible by https with a healtcheck in /health to check one database.
 
-I'm using a sandbox with automated shutdown so this urls won't be accesible but in my case after deployment I recieve a message with this alg hostname: alb_hostname = "myapp-load-balancer-920324680.us-east-1.elb.amazonaws.com"
+I'm using a sandbox with automated shutdown so this urls won't be accesible but in my case after deployment I recieve a message with this alb hostname: alb_hostname = "myapp-load-balancer-920324680.us-east-1.elb.amazonaws.com"
 
 If i go to this urls I would be able to test the certificate and also information about one database not deployed
  
@@ -60,12 +60,23 @@ INFRAESTRUCTURE EXPLANATION
 For our deployment in the cloud we are using terraform.
 
 We have a Cluster with a service deployed with 3 different tasks, this tasks are our go image and they are communicated with a load balancer in port 443, also this load balancer is using a certificate deployed before.
+Using the application load balancer we can distribute  network traffic and information flows across multiple servers, a load balancer ensures no single server bears too much demand. This improves application responsiveness and availability, enhances user experiences, and can protect from distributed denial-of-service (DDoS) attacks.
 
-We are using ECS because is really powerful compared with EC2 and we have an internet gateway for the public subnets with public and private subnets where the containers are located. We are deploying it on us-west-1 because my sandobx is located in this region.
+Also the service is autoscaled depending of the CPU utilization, minimum we run 3 tasks but we can scale up to 6 if the cpu utilizations goes >= 85, if the trafic is reduced and we find that we have  <= 10 cpu utlization we remove one task to avoid cost.
+
+We are using ECS because is really powerful compared with EC2 and we have an internet gateway for the public subnets with public and private subnets where the containers is located. We are deploying it on us-west-1 because my sandbox is located in this region.
+
+Our container is a go server is running with https protocol in port 443, the aws credentials are gathered from the credentials aws file in $HOME/.aws/credentials.
+
+Map explanation (hard mode)
 
 ![alt text](https://github.com/victorgomezg93/terraform-aws-go/blob/main/graph.png?raw=true)
 
-GUIDE TO CREATE PRIVATE/PUBLIC KEYS
+Better
+
+![alt text](https://github.com/victorgomezg93/terraform-aws-go/blob/main/diagram.png?raw=true)
+
+GUIDE TO CREATE PRIVATE/PUBLIC KEYS (not necessary, just as a reminder when the certificate expires)
 ----
 
 First we created the CA

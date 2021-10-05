@@ -29,7 +29,7 @@ resource "aws_alb_listener" "front_end" {
   load_balancer_arn = aws_alb.main.id
   port              = var.app_port
   protocol          = "HTTPS"
-  certificate_arn    = "arn:aws:acm:us-east-1:880231462042:certificate/8730eba6-f34c-46d0-921b-0a460ee1a181"
+  certificate_arn    = "arn:aws:acm:us-east-1:206607556591:certificate/74a5e9d3-01da-4046-9553-1893c2dc3215"
 
   default_action {
     target_group_arn = aws_alb_target_group.app.id

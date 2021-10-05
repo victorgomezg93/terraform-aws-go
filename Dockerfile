@@ -5,8 +5,8 @@ FROM golang:1.16-alpine
 WORKDIR /app
 
 #copy the files
-COPY go.mod .
-COPY go.sum .
+COPY app/go.mod .
+COPY app/go.sum .
 COPY app/server.go .
 COPY app/public.crt .
 COPY app/private.key .
