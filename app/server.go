@@ -66,14 +66,14 @@ func main() {
 
   
   s := &http.Server{
-    Addr: ":8080",
+    Addr: ":443",
     Handler: nil, // use `http.DefaultServeMux`
   }
 
-  //log.Println("Started, serving on port 443")
-  //err := s.ListenAndServeTLS("public.crt", "private.key")
-  log.Println("Started, serving on port 8080")
-  err := s.ListenAndServe()
+  log.Println("Started, serving on port 443")
+  err := s.ListenAndServeTLS("public.crt", "private.key")
+  //log.Println("Started, serving on port 8080")
+  //err := s.ListenAndServe()
 
   if err != nil {
     log.Fatal(err.Error())

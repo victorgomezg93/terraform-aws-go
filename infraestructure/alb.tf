@@ -8,15 +8,15 @@ resource "aws_alb" "main" {
 
 resource "aws_alb_target_group" "app" {
   name        = "myapp-target-group"
-  port        = 8080
-  protocol    = "HTTP"
+  port        = 443
+  protocol    = "HTTPS"
   vpc_id      = aws_vpc.main.id
   target_type = "ip"
 
   health_check {
     healthy_threshold   = "3"
     interval            = "30"
-    protocol            = "HTTP"
+    protocol            = "HTTPS"
     matcher             = "200"
     timeout             = "3"
     path                = var.health_check_path
@@ -28,7 +28,8 @@ resource "aws_alb_target_group" "app" {
 resource "aws_alb_listener" "front_end" {
   load_balancer_arn = aws_alb.main.id
   port              = var.app_port
-  protocol          = "HTTP"
+  protocol          = "HTTPS"
+  certificate_arn    = "arn:aws:acm:us-east-1:880231462042:certificate/8730eba6-f34c-46d0-921b-0a460ee1a181"
 
   default_action {
     target_group_arn = aws_alb_target_group.app.id
